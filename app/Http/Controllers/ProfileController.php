@@ -57,4 +57,11 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function show(){
+        $user = Auth::user();
+        
+        // Kirim data pengguna ke view
+        return view('profile.show', compact('users'));
+    }
 }
