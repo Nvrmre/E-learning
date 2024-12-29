@@ -66,7 +66,7 @@ public function store(Request $request)
     }
     if ($request->role == 'siswa') {
         \App\Models\Student::create([
-            'user_id' => $user->id, // Menyimpan user_id sebagai referensi ke users
+            'id_user' => $user->id, // Menyimpan user_id sebagai referensi ke users
             'nama_siswa' => $request->nama_siswa, // Nama siswa
             'kelas_id' => $request->kelas_id, // ID kelas siswa
         ]);

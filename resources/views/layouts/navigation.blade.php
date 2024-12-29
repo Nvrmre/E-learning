@@ -24,8 +24,8 @@
             <a href="/" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
             <a href="/classrooms" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Kelas</a>
             <a href="/courses" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Mata Pelajaran</a>
-            <a href="/ujian" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Ujian</a>
-            <a href="/nilai" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Nilai</a>
+            <a href="/exams" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Ujian</a>
+            <a href="/exam_scores" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Nilai</a>
            
             <!-- Admin Tab (Visible only for admins) -->
             @auth

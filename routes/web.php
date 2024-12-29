@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\ExamController;
+use App\Http\Controllers\ExamScoreController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Course;
 use Illuminate\Support\Facades\Route;
@@ -40,14 +42,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-
-    Route::get('/user', [AdminController::class, 'index'])->name('profile.index');
-    Route::get('/user/create', [AdminController::class, 'create'])->name('profile.create');
-    Route::post('/user', [AdminController::class, 'store'])->name('profile.store');
-    Route::get('/user/{user}/edit', [AdminController::class, 'edit'])->name('profile.edit');
-    Route::put('/user/{user}', [AdminController::class, 'update'])->name('profile.update');
-    Route::delete('/user/{user}', [AdminController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -57,6 +51,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/{user}/edit', [AdminController::class, 'edit'])->name('users.edit');
     Route::put('/users/{user}', [AdminController::class, 'update'])->name('users.update');
     Route::delete('/users/{user}', [AdminController::class, 'destroy'])->name('users.destroy');
+
+
+    //Ujian
+    Route::resource('exams', ExamController::class);
+
+    Route::get('/exams/{exam}/exam_scores/create', [ExamScoreController::class, 'create'])->name('exam_scores.create');
+    Route::post('/exams/{exam}/exam_scores', [ExamScoreController::class, 'store'])->name('exam_scores.store');
+    Route::resource('exam_scores', ExamScoreController::class)->except(['create', 'store']);
+    //Nilai
+    Route::resource('exam_scores', ExamScoreController::class);
 });
 
 require __DIR__ . '/auth.php';

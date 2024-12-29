@@ -1,11 +1,13 @@
 <x-app-layout>
   <div class="max-w-4xl mx-auto mt-10 bg-white shadow-md rounded-lg p-6">
     <!-- Tombol Create -->
-    <div class="mb-6 flex justify-end">
-      <a href="{{ route('courses.create') }}" class="bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-lg shadow-md">
-        Create New Course
-      </a>
-    </div>
+    @if(auth()->user()->role === 'admin' || auth()->user()->role === 'guru')
+      <div class="mb-6 flex justify-end">
+        <a href="{{ route('courses.create') }}" class="bg-gray-800 hover:bg-gray-900 text-white font-semibold py-2 px-4 rounded-lg shadow-md">
+          Create New Course
+        </a>
+      </div>
+    @endif
 
     <!-- Tabel Kursus -->
     <div class="overflow-hidden rounded-lg bg-white shadow-md">

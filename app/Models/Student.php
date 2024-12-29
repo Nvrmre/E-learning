@@ -11,7 +11,7 @@ class Student extends Model
     protected $table = 'students';
 
     protected $fillable = [
-        'user_id', 'nama_siswa', 'kelas_id',
+        'id_user', 'nama_siswa', 'kelas_id',
     ];
 
     // Relasi dengan model User
@@ -24,5 +24,9 @@ class Student extends Model
     public function classroom()
     {
         return $this->belongsTo(Classroom::class, 'kelas_id');
+    }
+    public function scores()
+    {
+        return $this->hasMany(ExamScore::class);
     }
 }
