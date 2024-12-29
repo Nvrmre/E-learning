@@ -12,11 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('courses', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('guru_id')->constrained('teachers');
-            $table->foreignId('kelas_id')->constrained('classrooms');
-            $table->string('mapel');
-            $table->timestamps();
+            $table->id(); // ID utama untuk setiap entri
+            $table->foreignId('kelas_id')->constrained('classrooms'); // Relasi ke tabel 'classrooms'
+            $table->foreignId('guru_id')->constrained('teachers'); // Relasi ke tabel 'teachers'
+            $table->string('mapel'); // Nama mata pelajaran
+            $table->string('materi_judul'); // Judul materi
+            $table->text('materi_text')->nullable(); // Konten materi jika diinput manual
+            $table->string('materi_file')->nullable(); // Nama file materi jika diupload
+            $table->enum('materi_tipe', ['pdf', 'text'])->default('text'); // Tipe materi (pdf atau teks)
+            $table->timestamps(); // Timestamp untuk created_at dan updated_at
         });
     }
 

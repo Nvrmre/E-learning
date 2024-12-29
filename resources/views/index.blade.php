@@ -1,12 +1,4 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  @vite('resources/css/app.css')
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-</head>
-<x-header></x-header>
+<x-app-layout>
 <body>
 <div  class="flex justify-center items-center h-screen">
   <div class="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
@@ -16,4 +8,4 @@
 </div>
 </div>
 </body>
-</html>
+</x-app-layout>

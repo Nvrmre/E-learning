@@ -22,15 +22,24 @@ class ClassroomController extends Controller
      */
     public function create()
     {
-        //
+        return view('classrooms.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Menyimpan kelas baru ke dalam database
     public function store(Request $request)
     {
-        //
+        // Validasi input
+        $request->validate([
+            'kelas' => 'required|string|max:255',
+        ]);
+
+        // Membuat data kelas baru
+        Classroom::create([
+            'kelas' => $request->kelas,
+        ]);
+
+        // Redirect kembali ke halaman kelas dengan pesan sukses
+        return redirect()->route('classrooms.index')->with('success', 'Kelas berhasil ditambahkan!');
     }
 
     /**

@@ -1,21 +1,32 @@
-<x-header></x-header>
-<div class="container mx-auto mt-8">
-    <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
-        <table class="min-w-full table-auto border-collapse border border-gray-200">
-            <thead class="bg-blue-500 text-white">
-                <tr>
-                    <th class="border border-gray-300 px-6 py-4 text-left">ID</th>
-                    <th class="border border-gray-300 px-6 py-4 text-left">Nama Kursus</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($classrooms as $classroom)
-                <tr class="hover:bg-gray-100 transition-colors duration-300">
-                    <td class="border border-gray-300 px-6 py-4">{{ $classroom->id }}</td>
-                    <td class="border border-gray-300 px-6 py-4">{{ $classroom->kelas }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+<x-app-layout>
+    <div class="container mx-auto mt-8">
+        <h2 class="text-2xl font-semibold mb-4">Daftar Kelas</h2>
+
+        @if(session('success'))
+            <div class="bg-green-500 text-white p-4 rounded mb-4">
+                {{ session('success') }}
+            </div>
+        @endif
+
+        <div class="overflow-x-auto bg-white shadow-xl rounded-lg">
+            <table class="min-w-full table-auto border-collapse border border-gray-300">
+                <thead class="bg-gray-200 text-gray-800">
+                    <tr>
+                        <th class="border border-gray-300 px-6 py-4 text-left">No</th>
+                        <th class="border border-gray-300 px-6 py-4 text-left">Nama Kelas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($classrooms as $index => $classroom)
+                    <tr class="hover:bg-gray-50 transition-colors duration-300">
+                        <td class="border border-gray-300 px-6 py-4">{{ $index + 1 }}</td>
+                        <td class="border border-gray-300 px-6 py-4">{{ $classroom->kelas }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+                <a href="{{ route('classrooms.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Tambah Kelas</a>
+
+            </table>
+        </div>
     </div>
-</div>
+</x-app-layout>
