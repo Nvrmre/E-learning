@@ -30,7 +30,7 @@
             <!-- Admin Tab (Visible only for admins) -->
             @auth
             @if(Auth::user()->role == 'admin')
-            <a href="/user" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Manajemen Pengguna</a>
+            <a href="/users" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Manajemen Pengguna</a>
             @endif
             @endauth
 
@@ -92,7 +92,7 @@
           <!-- Admin Tab (Visible only for admins) -->
           @auth
           @if(Auth::user()->role == 'admin')
-          <a href="/user-management" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Manajemen Pengguna</a>
+          <a href="/users" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Manajemen Pengguna</a>
           @endif
           @endauth
 

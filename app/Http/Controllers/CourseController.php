@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Classroom;
 use App\Models\Course;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -17,12 +18,15 @@ class CourseController extends Controller
     public function create()
     {
         $classrooms = Classroom::all(); // Mengambil semua kelas
-        return view('courses.create', compact('classrooms'));
+        $teachers = Teacher::all(); // Ambil semua guru
+
+    return view('courses.create', compact('classrooms', 'teachers'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'guru_id' => 'required|exists:teachers,id',
             'mapel' => 'required|string',
             'materi_judul' => 'required|string',
             'materi_tipe' => 'required|in:pdf,text',
@@ -38,7 +42,7 @@ class CourseController extends Controller
         }
 
         Course::create([
-             //uru_id' => auth()->id(), // ID guru (disesuaikan dengan login)
+            'guru_id' => auth()->id(), // ID guru (disesuaikan dengan login)
             'kelas_id' => $request->kelas_id, // Tambahkan input untuk kelas_id jika diperlukan
             'mapel' => $request->mapel,
             'materi_judul' => $request->materi_judul,

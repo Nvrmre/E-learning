@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('checkrole:admin'); // Hanya admin yang bisa mengakses manajemen pengguna
+        $this->middleware('role:admin'); // Hanya admin yang bisa mengakses manajemen pengguna
     }
 
     public function index(Request $request)

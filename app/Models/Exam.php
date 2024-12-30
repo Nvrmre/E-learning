@@ -12,14 +12,15 @@ class Exam extends Model
 
     protected $fillable = ['exam_name', 'exam_date', 'classroom_id'];
 
-    public function scores()
+    // In Exam.php model
+    public function examScores()
     {
         return $this->hasMany(ExamScore::class);
     }
+
 
     public function classroom()
     {
         return $this->belongsTo(Classroom::class);
     }
 }
-

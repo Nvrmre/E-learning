@@ -1,4 +1,4 @@
-// resources/views/exam_scores/create.blade.php
+
 <x-app-layout>
     <div class="container mx-auto p-6">
         <h2 class="text-2xl font-semibold mb-6">Tambah Nilai Ujian</h2>

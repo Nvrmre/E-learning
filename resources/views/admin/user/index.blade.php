@@ -9,7 +9,7 @@
         <div class="mb-4">
             <form action="{{ route('users.index') }}" method="GET" class="inline-block">
                 <select name="role" class="px-4 py-2 border border-gray-300 rounded-md">
-                    <option value="">Semua Role</option>
+                    <option value="">ALL</option>
                     <option value="admin" {{ request('role') === 'admin' ? 'selected' : '' }}>Admin</option>
                     <option value="siswa" {{ request('role') === 'siswa' ? 'selected' : '' }}>Siswa</option>
                     <option value="guru" {{ request('role') === 'guru' ? 'selected' : '' }}>Guru</option>

@@ -56,11 +56,12 @@ Route::middleware(['auth'])->group(function () {
     //Ujian
     Route::resource('exams', ExamController::class);
 
+    Route::get('/exams/{exam}/exam_scores', [ExamScoreController::class, 'index'])->name('exam_scores.index');
     Route::get('/exams/{exam}/exam_scores/create', [ExamScoreController::class, 'create'])->name('exam_scores.create');
     Route::post('/exams/{exam}/exam_scores', [ExamScoreController::class, 'store'])->name('exam_scores.store');
-    Route::resource('exam_scores', ExamScoreController::class)->except(['create', 'store']);
-    //Nilai
     Route::resource('exam_scores', ExamScoreController::class);
+    //Nilai
+
 });
 
 require __DIR__ . '/auth.php';

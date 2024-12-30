@@ -54,6 +54,18 @@
                 </select>
             </div>
 
+            <!-- Pilih Guru (Dropdown untuk Guru) -->
+            <div>
+                <label for="teacher_id" class="block text-sm font-medium text-gray-600 mb-2">Pilih Guru</label>
+                <select name="teacher_id" id="teacher_id" required
+                    class="w-full border border-gray-300 rounded-md p-3 focus:ring focus:ring-blue-200 focus:outline-none text-gray-700">
+                    <option value="">Pilih Guru</option>
+                    @foreach ($teachers as $teacher)
+                        <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
             <!-- Submit Button -->
             <button type="submit"
                 class="w-full bg-blue-600 text-white font-medium py-3 rounded-md hover:bg-blue-700 transition duration-300">

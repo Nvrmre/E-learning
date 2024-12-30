@@ -14,22 +14,27 @@ class ExamScoreController extends Controller
     public function __construct()
     {
         // Pastikan hanya admin dan guru yang dapat mengakses create dan store
-        $this->middleware('role:admin|guru')->only(['create', 'store']);
+        $this->middleware('role:admin,guru')->only(['create', 'store']);
     }
 
     // Menampilkan daftar nilai ujian berdasarkan exam_id
+    // ExamScoreController.php
     public function index(Exam $exam)
     {
-        $scores = ExamScore::where('exam_id', $exam->id)->get();
+        // The $exam variable will automatically be injected by Laravel
+        $scores = $exam->examScores;  // Assuming 'examScores' is the relationship on the Exam model
+    
         return view('exam_scores.index', compact('exam', 'scores'));
     }
-
+    
+    
     // Form untuk menambah nilai ujian
     public function create(Exam $exam)
     {
         $students = Student::all(); // Ambil semua siswa
         return view('exam_scores.create', compact('exam', 'students'));
     }
+
 
     // Menyimpan nilai ujian
     public function store(Request $request, Exam $exam)
@@ -48,7 +53,12 @@ class ExamScoreController extends Controller
         return redirect()->route('exam_scores.index', $exam)->with('success', 'Nilai berhasil ditambahkan');
     }
 
-    // Aksi lain (edit, update, delete) dapat mengikuti konvensi standar
+
+    public function show(ExamScore $examScore)
+    {
+        // Ambil data terkait exam_score dan siswa
+        $exam = $examScore->exam;
+        $student = $examScore->student;
+        return view('exam_scores.show', compact('examScores', 'exams', 'students'));
+    }
 }
-
-
