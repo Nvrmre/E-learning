@@ -22,14 +22,15 @@
           <!-- Desktop Navigation -->
           <div class="hidden lg:flex space-x-4">
             <a href="/" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Home</a>
-            <a href="/classrooms" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Kelas</a>
-            <a href="/courses" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Mata Pelajaran</a>
-            <a href="/exams" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Ujian</a>
-            <a href="/exam_scores" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Nilai</a>
-           
+            <!-- <a href="/courses" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Mata Pelajaran</a> -->
+            <!-- <a href="/exams" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Ujian</a> -->
+            <!-- <a href="/exam_scores" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Nilai</a> -->
+            <a href="/quizzes" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Kuis</a>
+
             <!-- Admin Tab (Visible only for admins) -->
             @auth
             @if(Auth::user()->role == 'admin')
+            <a href="/classrooms"  class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Kelas</a>
             <a href="/users" class="text-gray-700 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Manajemen Pengguna</a>
             @endif
             @endauth
@@ -84,14 +85,16 @@
       <!-- Mobile Navigation -->
       <div x-show="isOpen" @click.away="isOpen = false" class="lg:hidden">
         <div class="px-2 pt-2 pb-3 space-y-1">
-          <a href="/kelas" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Kelas</a>
+
           <a href="/courses" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Mata Pelajaran</a>
-          <a href="/ujian" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Ujian</a>
-          <a href="/nilai" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Nilai</a>
+          <!-- <a href="/ujian" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Ujian</a> -->
+          <!-- <a href="/nilai" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Nilai</a> -->
+          <a href="/quizzes" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Kuis</a>
 
           <!-- Admin Tab (Visible only for admins) -->
           @auth
           @if(Auth::user()->role == 'admin')
+          <a href="/kelas" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Kelas</a>
           <a href="/users" class="block text-gray-700 hover:bg-gray-100 px-3 py-2 rounded-md text-base font-medium">Manajemen Pengguna</a>
           @endif
           @endauth

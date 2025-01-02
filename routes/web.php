@@ -6,6 +6,7 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamScoreController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuizController;
 use App\Models\Course;
 use Illuminate\Support\Facades\Route;
 
@@ -55,13 +56,27 @@ Route::middleware(['auth'])->group(function () {
 
     //Ujian
     Route::resource('exams', ExamController::class);
-
+    Route::resource('quizzes', QuizController::class);
     Route::get('/exams/{exam}/exam_scores', [ExamScoreController::class, 'index'])->name('exam_scores.index');
     Route::get('/exams/{exam}/exam_scores/create', [ExamScoreController::class, 'create'])->name('exam_scores.create');
     Route::post('/exams/{exam}/exam_scores', [ExamScoreController::class, 'store'])->name('exam_scores.store');
     Route::resource('exam_scores', ExamScoreController::class);
-    //Nilai
-
 });
 
+Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes.index');
+
+// Halaman untuk mengerjakan kuis (hanya untuk siswa yang sudah login)
+Route::middleware(['auth', 'role:siswa'])->group(function () {
+    Route::get('quizzes/{quiz}', [QuizController::class, 'show'])->name('quizzes.show');
+    Route::post('quizzes/{quiz}/submit', [QuizController::class, 'submit'])->name('quizzes.submit');
+});
+
+// Halaman untuk membuat kuis, hanya admin dan guru
+Route::middleware(['auth', 'role:admin,guru'])->group(function () {
+    Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
+    Route::post('/quizzes', [QuizController::class, 'store'])->name('quizzes.store');
+    // Rute untuk menghapus kuis
+    Route::delete('/quizzes/{quiz}', [QuizController::class, 'destroy'])->name('quizzes.destroy');
+    Route::get('quizzes/{quiz}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
+});
 require __DIR__ . '/auth.php';
