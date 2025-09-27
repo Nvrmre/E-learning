@@ -14,8 +14,8 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 ">
+    <body class="font-sans antialiased bg-gray-100 dark:bg-gray-900 dark:text-gray-100 transition duration-300">
+     <div class="min-h-screen">
             @include('layouts.navigation')
 
             <!-- Page Heading -->
@@ -32,5 +32,14 @@
                 {{ $slot }}
             </main>
         </div>
+        <script>
+            if (localStorage.theme === 'dark' ||
+                (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark')
+            } else {
+            document.documentElement.classList.remove('dark')
+            }
+        </script>
+
     </body>
 </html>

@@ -33,18 +33,26 @@ public function index(){
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
+   public function update(ProfileUpdateRequest $request): RedirectResponse
+        {
+            $user = $request->user();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+            $user->fill($request->validated());
+
+            if ($request->hasFile('profile_photo')) {
+                $path = $request->file('profile_photo')->store('profile-photos', 'public');
+                $user->profile_photo_path = $path;
+            }
+
+            if ($user->isDirty('email')) {
+                $user->email_verified_at = null;
+            }
+
+            $user->save();
+
+            return Redirect::route('profile.edit')->with('status', 'profile-updated');
         }
 
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
-    }
 
     /**
      * Delete the user's account.
@@ -71,6 +79,6 @@ public function index(){
         $user = Auth::user();
         
         // Kirim data pengguna ke view
-        return view('profile.show', compact('users'));
+        return view('profile.index', compact('users'));
     }
 }

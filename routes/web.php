@@ -7,19 +7,8 @@ use App\Http\Controllers\ExamController;
 use App\Http\Controllers\ExamScoreController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuizController;
-use App\Models\Course;
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+use App\Http\Controllers\ModulController;
 
 
 Route::get('/', function () {
@@ -75,8 +64,17 @@ Route::middleware(['auth', 'role:siswa'])->group(function () {
 Route::middleware(['auth', 'role:admin,guru'])->group(function () {
     Route::get('/quizzes/create', [QuizController::class, 'create'])->name('quizzes.create');
     Route::post('/quizzes', [QuizController::class, 'store'])->name('quizzes.store');
-    // Rute untuk menghapus kuis
     Route::delete('/quizzes/{quiz}', [QuizController::class, 'destroy'])->name('quizzes.destroy');
     Route::get('quizzes/{quiz}/edit', [QuizController::class, 'edit'])->name('quizzes.edit');
+
+    // halaman modul pembelajaran
+    Route::get('/modul', [ModulController::class, 'showAllModul'])->name('modul.index');
+    Route::get('/modul/create', [ModulController::class, 'create'])->name('modul.create');
+    Route::post('/modul', [ModulController::class, 'store'])->name('modul.store');
+    Route::get('/modul/{modul}/edit', [ModulController::class, 'edit'])->name('modul.edit');
+    Route::put('/modul/{modul}', [ModulController::class, 'update'])->name('modul.update');
+    Route::delete('/modul/{modul}', [ModulController::class, 'destroy'])->name('modul.destroy');
 });
+
+
 require __DIR__ . '/auth.php';
