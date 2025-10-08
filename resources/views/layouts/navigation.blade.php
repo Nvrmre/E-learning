@@ -27,13 +27,14 @@
           <!-- Desktop Navigation -->
           <div class="hidden lg:flex space-x-4 items-center">
             @auth
-            <a href="/dashboard" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-            <a href="/quizzes" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Kuis</a>
+            <a href="/dashboard" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-base font-medium">Home</a>
+            <a href="/quizzes" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-base font-medium">Kuis</a>
+            <a href="/courses" class="block text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-base font-medium">Modul</a>
             @endauth
             @auth
             @if(Auth::user()->role == 'admin')
-            <a href="/classrooms" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Kelas</a>
-            <a href="/users" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium">Manajemen Pengguna</a>
+            <a href="/classrooms" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-base font-medium">Kelas</a>
+            <a href="/users" class="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:bg-gray-700 px-3 py-2 rounded-md text-base font-medium">Pengguna</a>
             @endif
             @endauth
 

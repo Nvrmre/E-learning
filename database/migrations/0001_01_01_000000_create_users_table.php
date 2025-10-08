@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->enum('role', ['guru', 'siswa','admin'])->default('admin');
-            $table->string('profile_photo_path')->nullable(); // <---- tambahin ini
+            $table->string('profile_photo_path')->nullable(); 
             $table->rememberToken();
             $table->timestamps();
         });

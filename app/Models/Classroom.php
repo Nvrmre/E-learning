@@ -12,5 +12,9 @@ class Classroom extends Model
         'kelas',
        
     ];
+    public function courses()
+    {
+        return $this->hasMany(Course::class, 'kelas_id');
+    }
 
 }
