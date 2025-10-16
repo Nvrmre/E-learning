@@ -49,28 +49,39 @@ class AdminController extends Controller
         }
 
         // Simpan user utama
-        $user = User::create([
+        $user = User::create ([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'role' => $request->role,
             'profile_photo_path' => $photoPath,
         ]);
+        // dd($user->name);
+        // dd($request->all());
 
         // Simpan ke tabel guru/siswa jika perlu
         if ($request->role === 'guru') {
+            try {
             Teacher::create([
                 'id_user' => $user->id,
                 'nama_guru' => $user->name,
                 'email' => $user->email,
                 'password' => $user->password,
             ]);
+        } catch (\Exception $e){
+            logger("Gagal Menyimpan Guru : " .$e->getMessage());
+        }
         } elseif ($request->role === 'siswa') {
-            Student::create([
-                'id_user' => $user->id,
-                'nama_siswa' => $user->name,
-                'kelas_id' => $request->kelas_id,
-            ]);
+            try {
+                Student::create([
+                    'id_user' => $user->id,
+                    'nama_siswa' => $user->name,
+                    'kelas_id' => $request->kelas_id,
+                    'password' => $user->password,
+                ]);
+            } catch(\Exception $e) {
+                 logger('Gagal simpan siswa: ' . $e->getMessage());
+            }
         }
 
         return redirect()->route('users.index')->with('success', 'User created successfully.');

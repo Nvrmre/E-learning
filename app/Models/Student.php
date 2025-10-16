@@ -11,7 +11,7 @@ class Student extends Model
     protected $table = 'students';
 
     protected $fillable = [
-        'id_user', 'nama_siswa', 'kelas_id',
+        'id_user', 'nama_siswa', 'kelas_id', 'password'
     ];
 
     // Relasi dengan model User

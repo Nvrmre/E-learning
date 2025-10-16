@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_siswa');
             $table->foreignId('kelas_id')->constrained('classrooms')->onDelete('cascade');
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
+            $table->string('password');
             $table->timestamps();
         });
     }

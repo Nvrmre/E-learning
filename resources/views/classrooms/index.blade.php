@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="container mx-auto mt-8 px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl font-semibold text-gray-800 mb-6">Daftar Kelas</h2>
+        <h2 class="text-3xl font-semibold text-gray-800 dark:text-gray-100 mb-6">Daftar Kelas</h2>
 
         @if(session('success'))
             <div class="bg-green-500 text-white p-4 rounded mb-6">
@@ -10,7 +10,7 @@
 
         <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
             <table class="min-w-full table-auto border-collapse border border-gray-300">
-                <thead class="bg-gray-800 text-white">
+                <thead class="bg-gray-700 dark:bg-gray-900 text-white">
                     <tr>
                         <th class="border border-gray-300 px-6 py-4 text-left text-sm font-medium">No</th>
                         <th class="border border-gray-300 px-6 py-4 text-left text-sm font-medium">Nama Kelas</th>
@@ -18,9 +18,9 @@
                 </thead>
                 <tbody>
                     @foreach ($classrooms as $index => $classroom)
-                    <tr class="hover:bg-gray-50 transition-colors duration-300">
-                        <td class="border border-gray-300 px-6 py-4 text-sm">{{ $index + 1 }}</td>
-                        <td class="border border-gray-300 px-6 py-4 text-sm">{{ $classroom->kelas }}</td>
+                    <tr class="bg-gray-100 dark:bg-gray-700 transition-colors duration-300">
+                        <td class="border border-gray-300 px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-gray-100">{{ $index + 1 }}</td>
+                        <td class="border border-gray-300 px-3 py-2 rounded-md text-base font-medium text-gray-800 dark:text-gray-100">{{ $classroom->kelas }}</td>
                     </tr>
                     @endforeach
                 </tbody>

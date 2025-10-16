@@ -39,7 +39,7 @@
                 @if(Auth::user()->role == 'siswa')
                 <a href="{{ route('quizzes.show', $quiz->id) }}"
                     class="bg-green-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 transition duration-200">
-                    Mengerjakan Kuis
+                    Kerjain nih
                 </a>
                 @endif
                 @endauth
